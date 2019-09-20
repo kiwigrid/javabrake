@@ -65,14 +65,7 @@ public class Notifier {
   /** Asynchronously sends a Notice to Airbrake. */
   public Future<Notice> send(Notice notice) {
     notice = this.filterNotice(notice);
-    CompletableFuture<Notice> future = this.asyncSender.send(notice);
-
-    final Notice finalNotice = notice;
-    future.whenComplete(
-        (value, exception) -> {
-          this.applyHooks(finalNotice);
-        });
-
+    Future<Notice> future = this.asyncSender.send(notice);
     return future;
   }
 

@@ -1,9 +1,9 @@
 package io.airbrake.javabrake;
 
-import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Future;
 
 public interface AsyncSender {
   void setHost(String host);
 
-  CompletableFuture<Notice> send(Notice notice);
+  Future<Notice> send(Notice notice);
 }
